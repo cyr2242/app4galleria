@@ -1,0 +1,10 @@
+<script>
+function getUrlVar(key){
+	var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search); 
+	return result && unescape(result[1]) || ""; 
+}
+</script>
+<a href="javascript:history.back(1)"><img src="close.png"></a>
+<script>
+document.write('<img src="' + getUrlVar('image') + '" style="position:absolute; left:0px; top:0px; z-index:-1;">');
+</script>

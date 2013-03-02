@@ -1,0 +1,13 @@
+<script>
+function getUrlVar(key){
+	var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search); 
+	return result && unescape(result[1]) || ""; 
+}
+</script>
+<div style="width:100%; height:90%; display: block; margin: 1em auto;">
+	<script>
+		document.write('<video controls preload="auto" width="100%" height="100%" poster="' + getUrlVar('image') + '">');
+		document.write('<source src="' + getUrlVar('video') + '" type="video/mp4"/>');
+		document.write('</video>');
+	</script>
+</div>
