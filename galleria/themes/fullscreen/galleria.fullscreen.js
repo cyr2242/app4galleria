@@ -21,7 +21,7 @@ Galleria.addTheme({
         easing: 'galleriaOut',
         
         // set this to false if you want to keep the thumbnails:
-        _hideDock: true,
+        _hideDock: false,
         
         // set this to true if you want to shrink the carousel when clicking a thumbnail:
         _closeOnClick: false
@@ -103,6 +103,10 @@ Galleria.addTheme({
 
         this.trigger('rescale');
 
+        this.$("counter").click(function () {
+            history.back(1);
+        });
+
         this.addIdleState(thumbs, { opacity: 0 });
         this.addIdleState(this.get('info'), { opacity: 0 });
 
@@ -110,10 +114,10 @@ Galleria.addTheme({
             this.addIdleState(this.get('iefix'), { opacity: 0 });
         }
 
-        this.$('image-nav-left, image-nav-right').css('opacity', 0.01).hover(function() {
+        this.$('image-nav-left, image-nav-right').css('opacity', 0.2).hover(function() {
             $(this).animate({opacity: 1}, 100);
         }, function() {
-            $(this).animate({opacity: 0});
+            $(this).animate({opacity: 0.2});
         }).show();
 
         if (options._hideDock) {
