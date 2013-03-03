@@ -45,7 +45,7 @@ do
 		echo "  thumb: path + '.thumbnails/thm_$f.jpg'," >> data.js
 		echo "  iframe: iframe_uri + '?video=' + path + '.thumbnails/$f&image=' + path + '.thumbnails/web_$f.jpg'," >> data.js
 		echo "}," >> data.js
-		ffmpeg -y -itsoffset -4 -i "$f" -vcodec mjpeg -vframes 1 -an -f rawvideo -s vga ".thumbnails/web_$f.jpg" 2> /dev/null
+		~/ffmpeg/common/bin/ffmpeg -y -itsoffset -4 -i "$f" -vcodec mjpeg -vframes 1 -an -f rawvideo -s vga ".thumbnails/web_$f.jpg" 2> /dev/null
 		composite $(dirname $0)/play.png -dissolve 35 -resize 66x50 .thumbnails/web_$f.jpg .thumbnails/thm_$f.jpg
 		~/ffmpeg/common/bin/ffmpeg -i "$f" -filter_complex aresample=48000 -vcodec libx264 -vprofile high -preset slow -bufsize 1000k -threads 0 -acodec libfaac -crf 22 -pix_fmt yuv420p ".thumbnails/$f.mp4"
 	fi
