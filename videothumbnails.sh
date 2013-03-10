@@ -17,10 +17,10 @@ echo "var data = [" > data.js
 # Procesa imagenes jpg encontradas en el directorio actual
 for f in *.[Jj][Pp][Gg]
 do
-	if [ $f != '*.[Jj][Pp][Gg]' ]
+	if [ "$f" != '*.[Jj][Pp][Gg]' ]
 	then
 		echo "Procesando $f"
-		i=$(identify -format %[EXIF:DateTime]\ %[EXIF:Model] $f)
+		i=$(identify -format %[EXIF:DateTime]\ %[EXIF:Model] "$f")
 		echo "{" >> data.js
 		echo "  title: '$f'," >> data.js
 		echo "  description: '$i'," >> data.js
@@ -28,8 +28,8 @@ do
 		echo "  image: path + '.thumbnails/web_$f'," >> data.js
 		echo "  link: link_uri + '?image=' + path + '$f'," >> data.js
 		echo "}," >> data.js
-		convert $f -auto-orient -resize @3350 -quality 70 .thumbnails/thm_$f
-		convert $f -auto-orient -resize @786432 -quality 70 .thumbnails/web_$f
+		convert "$f" -auto-orient -resize @3350 -quality 70 ".thumbnails/thm_$f"
+		convert "$f" -auto-orient -resize @786432 -quality 70 ".thumbnails/web_$f"
 	fi
 done
 
