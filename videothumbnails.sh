@@ -43,7 +43,7 @@ do
 		echo "  title: '$f'," >> data.js
 		echo "  description: '$f'," >> data.js
 		echo "  thumb: path + '.thumbnails/thm_$f.jpg'," >> data.js
-		echo "  iframe: iframe_uri + '?video=' + path + '.thumbnails/$f&image=' + path + '.thumbnails/web_$f.jpg'," >> data.js
+		echo "  iframe: iframe_uri + '?video=' + path + '.thumbnails/$f.mp4&image=' + path + '.thumbnails/web_$f.jpg'," >> data.js
 		echo "}," >> data.js
 		~/ffmpeg/common/bin/ffmpeg -y -itsoffset -4 -i "$f" -vcodec mjpeg -vframes 1 -an -f rawvideo -s vga ".thumbnails/web_$f.jpg" 2> /dev/null
 		composite $(dirname $0)/play.png -dissolve 35 -resize 66x50 .thumbnails/web_$f.jpg .thumbnails/thm_$f.jpg
